@@ -1276,3 +1276,21 @@ display:none;
 
 }
 
+/* =============== RA logo */
+/* BRAND CONTAINER */
+.brand{
+display:flex;
+align-items:center;
+}
+
+/* WIDE LOGO FIX */
+.logo{
+width:170px;        /* Best width for this logo */
+height:auto;
+object-fit:contain;
+display:block;
+
+/* Glow */
+filter: drop-shadow(0 0 6px #0ef)
+        drop-shadow(0 0 12px #0ef);
+}
