@@ -2,7 +2,7 @@
 document.addEventListener("DOMContentLoaded",()=>{
 
 /* Typing */
-const roles=["Data Analyst","Python Doveloper","Aspiring Data Scientis"];
+const roles=["Data Analyst","Python Doveloper","Aspiring Data Scientist"];
 let i=0,j=0,current="",deleting=false;
 
 function type(){
