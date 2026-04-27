@@ -1613,3 +1613,9 @@ filter: drop-shadow(0 0 6px #0ef)
   pointer-events: none;
   z-index: 0;
 }
+/* ===================================================
+   HERO IMAGE — FLOATING ANIMATION
+   =================================================== */
+.image-frame {
+  animation: floatImage 4s ease-in-out infinite;
+}
