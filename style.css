@@ -1848,7 +1848,13 @@ footer {
 }
 
 @keyframes floatImage {
-  0%,100% { transform: translateY(0px) rotate(0deg); }
-  25%      { transform: translateY(-12px) rotate(1deg); }
-  75%      { transform: translateY(6px)  rotate(-1deg); }
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
 }
