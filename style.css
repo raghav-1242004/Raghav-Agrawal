@@ -1419,6 +1419,7 @@ filter: drop-shadow(0 0 6px #0ef)
   border-color: rgba(34, 197, 94, 0.3);
 }
 
+
 /* ============================================
    MOBILE FIXES — EDUCATION + OVERALL
 ============================================ */
@@ -1601,6 +1602,231 @@ filter: drop-shadow(0 0 6px #0ef)
   }
 }
 
+
+/* ===================================================
+   VIEW ALL BUTTONS — Projects & Certificates
+   =================================================== */
+
+.view-all-wrap {
+  display: flex;
+  justify-content: center;
+  padding: 36px 20px 10px;
+}
+
+/* Base button */
+.view-all-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 36px;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 700;
+  text-decoration: none;
+  letter-spacing: 0.5px;
+  overflow: hidden;
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 0.35s ease;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Shimmer sweep animation */
+.view-all-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.22) 50%,
+    transparent 100%
+  );
+  transition: left 0.55s ease;
+}
+.view-all-btn:hover::before {
+  left: 100%;
+}
+
+/* Glow blob behind button */
+.btn-bg-glow {
+  position: absolute;
+  width: 120%;
+  height: 200%;
+  top: -50%;
+  left: -10%;
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.4s;
+  pointer-events: none;
+  filter: blur(28px);
+}
+.view-all-btn:hover .btn-bg-glow {
+  opacity: 0.55;
+}
+
+/* Arrow slides right on hover */
+.btn-arrow {
+  font-size: 0.85rem;
+  transition: transform 0.3s ease;
+}
+.view-all-btn:hover .btn-arrow {
+  transform: translateX(6px);
+}
+
+/* Bounce-in on hover */
+.view-all-btn:hover {
+  transform: translateY(-5px) scale(1.04);
+}
+
+/* ── Projects button — Cyan theme ── */
+.projects-btn {
+  background: linear-gradient(135deg, #0ef 0%, #00b4d8 100%);
+  color: #0a0a0f;
+  border: 2px solid transparent;
+  box-shadow:
+    0 0 24px rgba(0, 238, 255, 0.4),
+    0 4px 16px rgba(0, 0, 0, 0.3);
+}
+.projects-btn .btn-bg-glow {
+  background: radial-gradient(circle, #0ef, transparent 70%);
+}
+.projects-btn:hover {
+  box-shadow:
+    0 0 50px rgba(0, 238, 255, 0.7),
+    0 8px 24px rgba(0, 0, 0, 0.35);
+}
+
+/* Pulse ring for projects btn */
+.projects-btn::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 54px;
+  border: 2px solid rgba(0, 238, 255, 0.6);
+  animation: pulse-ring-cyan 2s ease-out infinite;
+  pointer-events: none;
+}
+@keyframes pulse-ring-cyan {
+  0%   { transform: scale(1);    opacity: 0.7; }
+  70%  { transform: scale(1.12); opacity: 0; }
+  100% { transform: scale(1.12); opacity: 0; }
+}
+
+/* ── Certificates button — Purple theme ── */
+.certs-btn {
+  background: linear-gradient(135deg, #a855f7 0%, #7c3aed 100%);
+  color: #fff;
+  border: 2px solid transparent;
+  box-shadow:
+    0 0 24px rgba(168, 85, 247, 0.45),
+    0 4px 16px rgba(0, 0, 0, 0.3);
+}
+.certs-btn .btn-bg-glow {
+  background: radial-gradient(circle, #a855f7, transparent 70%);
+}
+.certs-btn:hover {
+  box-shadow:
+    0 0 50px rgba(168, 85, 247, 0.75),
+    0 8px 24px rgba(0, 0, 0, 0.35);
+}
+
+/* Pulse ring for certs btn */
+.certs-btn::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 54px;
+  border: 2px solid rgba(168, 85, 247, 0.65);
+  animation: pulse-ring-purple 2s ease-out infinite;
+  pointer-events: none;
+}
+@keyframes pulse-ring-purple {
+  0%   { transform: scale(1);    opacity: 0.7; }
+  70%  { transform: scale(1.12); opacity: 0; }
+  100% { transform: scale(1.12); opacity: 0; }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .view-all-btn {
+    padding: 13px 28px;
+    font-size: 0.9rem;
+  }
+}
+
+/* ===================== Visitor Counter in Footer ===================== */
+footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 24px 20px;
+}
+
+.visitor-counter {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(168, 85, 247, 0.3);
+  border-radius: 30px;
+  padding: 8px 20px;
+  font-size: 0.9rem;
+  color: #ccc;
+  backdrop-filter: blur(6px);
+  animation: fadeInUp 1s ease 0.5s both;
+}
+
+.visitor-counter i {
+  color: #a855f7;
+  font-size: 1rem;
+}
+
+#visitor-count strong {
+  color: #a855f7;
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+/* Loading dots animation */
+.visitor-dots {
+  display: inline-flex;
+  gap: 4px;
+  align-items: center;
+}
+.visitor-dots span {
+  width: 5px;
+  height: 5px;
+  background: #a855f7;
+  border-radius: 50%;
+  display: inline-block;
+  animation: dotBounce 1.2s infinite ease-in-out;
+}
+.visitor-dots span:nth-child(2) { animation-delay: 0.2s; }
+.visitor-dots span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes dotBounce {
+  0%, 80%, 100% { transform: scale(0.6); opacity: 0.4; }
+  40%            { transform: scale(1.0); opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 480px) {
+  .visitor-counter {
+    font-size: 0.82rem;
+    padding: 7px 16px;
+  }
+}
+
 /* ===================================================
    SHOOTING STARS (TUTA TARA) CANVAS
    =================================================== */
@@ -1612,10 +1838,4 @@ filter: drop-shadow(0 0 6px #0ef)
   height: 100%;
   pointer-events: none;
   z-index: 0;
-}
-/* ===================================================
-   HERO IMAGE — FLOATING ANIMATION
-   =================================================== */
-.image-frame {
-  animation: floatImage 4s ease-in-out infinite;
 }
