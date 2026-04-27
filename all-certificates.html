@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>All Certificates | Raghav Agrawal</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --cyan: #0ef;
+    --purple: #a855f7;
+    --gold: #f59e0b;
+    --dark: #0a0a0f;
+    --card-bg: #111120;
+    --card-border: #1e1e3a;
+  }
+
+  body {
+    background: var(--dark);
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 50% at 80% 10%, rgba(168,85,247,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 60% at 20% 90%, rgba(0,238,255,0.06) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ─── Header ─── */
+  .page-header {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 60px 20px 20px;
+  }
+
+  .back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--purple);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-bottom: 30px;
+    padding: 8px 18px;
+    border: 1px solid rgba(168,85,247,0.3);
+    border-radius: 30px;
+    transition: all 0.3s;
+    backdrop-filter: blur(6px);
+    background: rgba(168,85,247,0.05);
+  }
+  .back-btn:hover {
+    background: rgba(168,85,247,0.15);
+    box-shadow: 0 0 20px rgba(168,85,247,0.3);
+    transform: translateX(-4px);
+  }
+
+  .page-header h1 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--purple), var(--cyan));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 12px;
+  }
+
+  .page-header p {
+    color: rgba(255,255,255,0.55);
+    font-size: 1rem;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  .divider {
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--purple), var(--cyan));
+    margin: 18px auto 50px;
+    border-radius: 4px;
+  }
+
+  /* ─── Count badge ─── */
+  .cert-count {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(245,158,11,0.1);
+    border: 1px solid rgba(245,158,11,0.3);
+    color: var(--gold);
+    font-size: 0.82rem;
+    font-weight: 600;
+    padding: 5px 16px;
+    border-radius: 20px;
+    margin-bottom: 40px;
+  }
+
+  /* ─── Grid ─── */
+  .certs-grid {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+    gap: 28px;
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+  }
+
+  /* ─── Card ─── */
+  .cert-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 18px;
+    overflow: hidden;
+    transition: transform 0.35s, box-shadow 0.35s, border-color 0.35s;
+    animation: fadeUp 0.5s both;
+    cursor: pointer;
+  }
+  .cert-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(168,85,247,0.4);
+    box-shadow: 0 20px 50px rgba(168,85,247,0.12), 0 0 0 1px rgba(168,85,247,0.15);
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Staggered animation delays */
+  .cert-card:nth-child(1)  { animation-delay: 0.03s; }
+  .cert-card:nth-child(2)  { animation-delay: 0.07s; }
+  .cert-card:nth-child(3)  { animation-delay: 0.11s; }
+  .cert-card:nth-child(4)  { animation-delay: 0.15s; }
+  .cert-card:nth-child(5)  { animation-delay: 0.19s; }
+  .cert-card:nth-child(6)  { animation-delay: 0.23s; }
+  .cert-card:nth-child(7)  { animation-delay: 0.27s; }
+  .cert-card:nth-child(8)  { animation-delay: 0.31s; }
+  .cert-card:nth-child(9)  { animation-delay: 0.35s; }
+  .cert-card:nth-child(10) { animation-delay: 0.39s; }
+  .cert-card:nth-child(11) { animation-delay: 0.43s; }
+  .cert-card:nth-child(12) { animation-delay: 0.47s; }
+  .cert-card:nth-child(13) { animation-delay: 0.51s; }
+  .cert-card:nth-child(14) { animation-delay: 0.55s; }
+  .cert-card:nth-child(15) { animation-delay: 0.59s; }
+  .cert-card:nth-child(16) { animation-delay: 0.63s; }
+  .cert-card:nth-child(17) { animation-delay: 0.67s; }
+  .cert-card:nth-child(18) { animation-delay: 0.71s; }
+  .cert-card:nth-child(19) { animation-delay: 0.75s; }
+  .cert-card:nth-child(20) { animation-delay: 0.79s; }
+  .cert-card:nth-child(21) { animation-delay: 0.83s; }
+  .cert-card:nth-child(22) { animation-delay: 0.87s; }
+
+  .cert-img-wrap {
+    width: 100%;
+    height: 170px;
+    overflow: hidden;
+    position: relative;
+    background: #0d0d1e;
+  }
+  .cert-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s;
+  }
+  .cert-card:hover .cert-img-wrap img {
+    transform: scale(1.06);
+  }
+
+  /* hover zoom overlay */
+  .zoom-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(168,85,247,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .zoom-overlay i {
+    font-size: 2rem;
+    color: #fff;
+    filter: drop-shadow(0 0 10px rgba(168,85,247,0.8));
+  }
+  .cert-card:hover .zoom-overlay { opacity: 1; }
+
+  /* Issuer badge */
+  .cert-issuer {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: rgba(0,0,0,0.65);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: rgba(255,255,255,0.85);
+    font-size: 0.68rem;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 20px;
+    backdrop-filter: blur(6px);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .card-body {
+    padding: 18px 20px 22px;
+  }
+
+  .card-body h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 5px;
+    line-height: 1.4;
+  }
+
+  .card-body .year {
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 16px;
+  }
+
+  /* ─── View Button ─── */
+  .btn-view {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 22px;
+    border-radius: 30px;
+    font-size: 0.84rem;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    transition: all 0.3s;
+    width: 100%;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--purple), #7c3aed);
+    color: #fff;
+    box-shadow: 0 4px 18px rgba(168,85,247,0.35);
+    letter-spacing: 0.3px;
+  }
+
+  .btn-view::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.18), transparent);
+    transition: left 0.5s;
+  }
+  .btn-view:hover {
+    box-shadow: 0 6px 30px rgba(168,85,247,0.6);
+    transform: translateY(-2px);
+  }
+  .btn-view:hover::before {
+    left: 100%;
+  }
+
+  /* ─── Lightbox ─── */
+  .lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.92);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    backdrop-filter: blur(10px);
+    animation: fadeIn 0.2s;
+  }
+  .lightbox.active { display: flex; }
+
+  @keyframes fadeIn {
+    from { opacity: 0; } to { opacity: 1; }
+  }
+
+  .lightbox-inner {
+    position: relative;
+    max-width: 90vw;
+    max-height: 90vh;
+    animation: popIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  @keyframes popIn {
+    from { opacity: 0; transform: scale(0.85); }
+    to   { opacity: 1; transform: scale(1); }
+  }
+
+  .lightbox-inner img {
+    max-width: 100%;
+    max-height: 85vh;
+    border-radius: 12px;
+    box-shadow: 0 0 60px rgba(168,85,247,0.4);
+    display: block;
+  }
+
+  .lightbox-close {
+    position: absolute;
+    top: -16px;
+    right: -16px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--purple);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 18px rgba(168,85,247,0.6);
+    transition: background 0.2s, transform 0.2s;
+  }
+  .lightbox-close:hover {
+    background: #7c3aed;
+    transform: rotate(90deg) scale(1.1);
+  }
+
+  .lightbox-caption {
+    text-align: center;
+    margin-top: 14px;
+    color: rgba(255,255,255,0.7);
+    font-size: 0.9rem;
+  }
+
+  /* ─── Footer ─── */
+  .page-footer {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 20px;
+    color: rgba(255,255,255,0.3);
+    font-size: 0.82rem;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+
+  @media (max-width: 480px) {
+    .certs-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <div>
+    <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Portfolio</a>
+  </div>
+  <h1>All Certificates</h1>
+  <p>Every course, training & certification I've earned on my learning journey.</p>
+  <div class="divider"></div>
+  <div class="cert-count"><i class="fas fa-award"></i> 22 Certificates Earned</div>
+</div>
+
+<div class="certs-grid">
+
+  <!-- 1 -->
+  <div class="cert-card" onclick="openLight('assets/Certificates/Data Visualisation.png','Data Visualisation — TATA • 2025')">
+    <div class="cert-img-wrap">
+      <img src="assets/Certificates/Data Visualisation.png" alt="Data Visualisation">
+      <span class="cert-issuer">TATA</span>
+      <div class="zoom-overlay"><i class="fas fa-search-plus"></i></div>
+    </div>
+    <div class="card-body">
+      <h3>Data Visualisation</h3>
+      <p class="year">TATA • 2025</p>
+      <button class="btn-view" onclick="event.stopPropagation(); openLight('assets/Certificates/Data Visualisation.png','Data Visualisation — TATA • 2025')">
+        <i class="fas fa-eye"></i> View Certificate
+      </button>
+    </div>
+  </div>
+
+  <!-- 2 -->
+  <div class="cert-card" onclick="openLight('assets/Certificates/CDAC.png','Cyber Security — CDAC • 2025')">
+    <div class="cert-img-wrap">
+      <img src="assets/Certificates/CDAC.png" alt="Cyber Security CDAC">
+      <span class="cert-issuer">CDAC</span>
+      <div class="zoom-overlay"><i class="fas fa-search-plus"></i></div>
+    </div>
+    <div class="card-body">
+      <h3>Cyber Security</h3>
+      <p class="year">CDAC • 2025</p>
+      <button class="btn-view" onclick="event.stopPropagation(); openLight('assets/Certificates/CDAC.png','Cyber Security — CDAC • 2025')">
+        <i class="fas fa-eye"></i> View Certificate
+      </button>
+    </div>
+  </div>
+
+  <!-- 3 -->
+  <div class="cert-card" onclick="openLight('assets/Certificates/Data Science Profissional.png','Data Science Professional — Oracle • 2025')">
+    <div class="cert-img-wrap">
+      <img src="assets/Certificates/Data Science Profissional.png" alt="Data Science Professional">
+      <span class="cert-issuer">Oracle</span>
+      <div class="zoom-overlay"><i class="fas fa-search-plus"></i></div>
+    </div>
+    <div class="card-body">
+      <h3>Data Science Professional</h3>
+      <p class="year">Oracle • 2025</p>
+      <button class="btn-view" onclick="event.stopPropagation(); openLight('assets/Certificates/Data Science Profissional.png','Data Science Professional — Oracle • 2025')">
+        <i class="fas fa-eye"></i> View Certificate
+      </button>
+    </div>
+  </div>
+
+  <!-- 4 -->
+  <div class="cert-card" onclick="openLight('assets/Certificates/Generative Ai.png','Generative AI — Oracle • 2025')">
+    <div class="cert-img-wrap">
+      <img src="assets/Certificates/Generative Ai.png" alt="Generative AI">
+      <span class="cert-issuer">Oracle</span>
+      <div class="zoom-overlay"><i class="fas fa-search-plus"></i></div>
+    </div>
+    <div class="card-body">
+      <h3>Generative AI</h3>
+      <p class="year">Oracle • 2025</p>
+      <button class="btn-view" onclick="event.stopPropagation(); openLight('assets/Certificates/Generative Ai.png','Generative AI — Oracle • 2025')">
+        <i class="fas fa-eye"></i> View Certificate
+      </button>
+    </div>
+  </div>
+
+  <!-- 5 -->
+  <div class="cert-card" onclick="openLight('assets/Certificates/Oracle Cloud Infrastructure.png','Oracle Cloud Infrastructure • 2025')">
+    <div class="cert-img-wrap">
+      <img src="assets/Certificates/Oracle Cloud Infrastructure.png" alt="Oracle Cloud Infrastructure">
+      <span class="cert-issuer">Oracle</span>
+      <div class="zoom-overlay"><i class="fas fa-search-plus"></i></div>
+    </div>
+    <div class="card-body">
+      <h3>Oracle Cloud Infrastructure</h3>
+      <p class="year">Oracle • 2025</p>
+      <button class="btn-view" onclick="event.stopPropagation(); openLight('assets/Certificates/Oracle Cloud Infrastructure.png','Oracle Cloud Infrastructure • 2025')">
+        <i class="fas fa-eye"></i> View Certificate
+      </button>
+    </div>
+  </div>
+
+  <!-- 6 -->
+  <div class="cert-card" onclick="openLight('assets/Certificates/AI Foundations Associate.png','AI Foundations Associate — Oracle • 2025')">
+    <div class="cert-img-wrap">
+      <img src="assets/Certificates/AI Foundations Associate.png" alt="AI Foundations Associate">
+      <span class="cert-issuer">Oracle</span>
+      <div class="zoom-overlay"><i class="fas fa-search-plus"></i></div>
+    </div>
+    <div class="card-body">
+      <h3>AI Foundations Associate</h3>
+      <p class="year">Oracle • 2025</p>
+      <button class="btn-view" onclick="event.stopPropagation(); openLight('assets/Certificates/AI Foundations Associate.png','AI Foundations Associate — Oracle • 2025')">
+        <i class="fas fa-eye"></i> View Certificate
+      </button>
+    </div>
+  </div>
+
+  <!-- 7 -->
+  <div class="cert-card" onclick="openLight('assets/Certificates/Microsoft Excel.png','Microsoft Excel — Coursera • 2025')">
+    <div class="cert-img-wrap">
+      <img src="assets/Certificates/Microsoft Excel.png" alt="Microsoft Excel">
+      <span class="cert-issuer">Coursera</span>
+      <div class="zoom-overlay"><i class="fas fa-search-plus"></i></div>
+    </div>
+    <div class="card-body">
+      <h3>Microsoft Excel</h3>
+      <p class="year">Coursera • 2025</p>
+      <button class="btn-view" onclick="event.stopPropagation(); openLight('assets/Certificates/Microsoft Excel.png','Microsoft Excel — Coursera • 2025')">
+        <i class="fas fa-eye"></i> View Certificate
+      </button>
+    </div>
+  </div>
+
+  <!-- 8 -->
+  <div class="cert-card" onclick="openLight('assets/Certificates/Google Analytics.png','Google Analytics — Coursera • 2025')">
+    <div class="cert-img-wrap">
+      <img src="assets/Certificates/Google Analytics.png" alt="Google Analytics">
+      <span class="cert-issuer">Coursera</span>
+      <div class="zoom-overlay"><i class="fas fa-search-plus"></i></div>
+    </div>
+    <div class="card-body">
+      <h3>Google Analytics</h3>
+      <p class="year">Coursera • 2025</p>
+      <button class="btn-view" onclick="event.stopPropagation(); openLight('assets/Certificates/Google Analytics.png','Google Analytics — Coursera • 2025')">
+        <i class="fas fa-eye"></i> View Certificate
+      </button>
+    </div>
+  </div>
+
+  <!-- 9 -->
+  <div class="cert-card" onclick="openLight('assets/Certificates/Kali linux.png','Kali Linux — Coursera • 2025')">
+    <div class="cert-img-wrap">
+      <img src="assets/Certificates/Kali linux.png" alt="Kali Linux">
+      <span class="cert-issuer">Coursera</span>
+      <div class="zoom-overlay"><i class="fas fa-search-plus"></i></div>
+    </div>
+    <div class="card-body">
+      <h3>Kali Linux</h3>
+      <p class="year">Coursera • 2025</p>
+      <button class="btn-view" onclick="event.stopPropagation(); openLight('assets/Certificates/Kali linux.png','Kali Linux — Coursera • 2025')">
+        <i class="fas fa-eye"></i> View Certificate
+      </button>
+    </div>
+  </div>
+
+  <!-- 10 -->
+  <div class="cert-card" onclick="openLight('assets/Certificates/Data Analysis with Python IBM.png','Data Analytics with Python — IBM • 2024')">
+    <div class="cert-img-wrap">
+      <img src="assets/Certificates/Data Analysis with Python IBM.png" alt="Data Analysis IBM">
+      <span class="cert-issuer">IBM</span>
+      <div class="zoom-overlay"><i class="fas fa-search-plus"></i></div>
+    </div>
+    <div class="card-body">
+      <h3>Data Analytics with Python</h3>
+      <p class="year">IBM • 2024</p>
+      <button class="btn-view" onclick="event.stopPropagation(); openLight('assets/Certificates/Data Analysis with Python IBM.png','Data Analytics with Python — IBM • 2024')">
+        <i class="fas fa-eye"></i> View Certificate
+      </button>
+    </div>
+  </div>
+
+  <!-- 11 -->
+  <div class="cert-card" onclick="openLight('assets/Certificates/python.png','Python 101 For Data Science — IBM • 2025')">
+    <div class="cert-img-wrap">
+      <img src="assets/Certificates/python.png" alt="Python IBM">
+      <span class="cert-issuer">IBM</span>
+      <div class="zoom-overlay"><i class="fas fa-search-plus"></i></div>
+    </div>
+    <div class="card-body">
+      <h3>Python 101 For Data Science</h3>
+      <p class="year">IBM • 2025</p>
+      <button class="btn-view" onclick="event.stopPropagation(); openLight('assets/Certificates/python.png','Python 101 For Data Science — IBM • 2025')">
+        <i class="fas fa-eye"></i> View Certificate
+      </button>
+    </div>
+  </div>
+
+  <!-- 12 -->
+  <div class="cert-card" onclick="openLight('assets/Certificates/Data Privacy Fundamentals.png','Data Privacy Fundamentals • 2025')">
+    <div class="cert-img-wrap">
+      <img src="assets/Certificates/Data Privacy Fundamentals.png" alt="Data Privacy">
+      <span class="cert-issuer">Fireside</span>
+      <div class="zoom-overlay"><i class="fas fa-search-plus"></i></div>
+    </div>
+    <div class="card-body">
+      <h3>Data Privacy Fundamentals</h3>
+      <p class="year">Fireside Analytics Inc. • 2025</p>
+      <button class="btn-view" onclick="event.stopPropagation(); openLight('assets/Certificates/Data Privacy Fundamentals.png','Data Privacy Fundamentals • 2025')">
+        <i class="fas fa-eye"></i> View Certificate
+      </button>
+    </div>
+  </div>
+
+  <!-- 13 -->
+  <div class="cert-card" onclick="openLight('assets/Certificates/Cyber Security.png','Introduction to Cyber Security — Simpli Learn • 2025')">
+    <div class="cert-img-wrap">
+      <img src="assets/Certificates/Cyber Security.png" alt="Cyber Security">
+      <span class="cert-issuer">SimpliLearn</span>
+      <div class="zoom-overlay"><i class="fas fa-search-plus"></i></div>
+    </div>
+    <div class="card-body">
+      <h3>Introduction to Cyber Security</h3>
+      <p class="year">Simpli Learn • 2025</p>
+      <button class="btn-view" onclick="event.stopPropagation(); openLight('assets/Certificates/Cyber Security.png','Introduction to Cyber Security — Simpli Learn • 2025')">
+        <i class="fas fa-eye"></i> View Certificate
+      </button>
+    </div>
+  </div>
+
+  <!-- 14 -->
+  <div class="cert-card" onclick="openLight('assets/Certificates/HCL.jpg','HCL — GUVI Workshop • 2025')">
+    <div class="cert-img-wrap">
+      <img src="assets/Certificates/HCL.jpg" alt="HCL">
+      <span class="cert-issuer">GUVI</span>
+      <div class="zoom-overlay"><i class="fas fa-search-plus"></i></div>
+    </div>
+    <div class="card-body">
+      <h3>HCL</h3>
+      <p class="year">GUVI's Workshop • 2025</p>
+      <button class="btn-view" onclick="event.stopPropagation(); openLight('assets/Certificates/HCL.jpg','HCL — GUVI Workshop • 2025')">
+        <i class="fas fa-eye"></i> View Certificate
+      </button>
+    </div>
+  </div>
+
+  <!-- 15 -->
+  <div class="cert-card" onclick="openLight('assets/Certificates/Data-Science-for-Everyone.png','Data Science For Everyone — Reliance Foundation • 2025')">
+    <div class="cert-img-wrap">
+      <img src="assets/Certificates/Data-Science-for-Everyone.png" alt="Data Science">
+      <span class="cert-issuer">Reliance</span>
+      <div class="zoom-overlay"><i class="fas fa-search-plus"></i></div>
+    </div>
+    <div class="card-body">
+      <h3>Data Science For Everyone</h3>
+      <p class="year">Reliance Foundation • 2025</p>
+      <button class="btn-view" onclick="event.stopPropagation(); openLight('assets/Certificates/Data-Science-for-Everyone.png','Data Science For Everyone — Reliance Foundation • 2025')">
+        <i class="fas fa-eye"></i> View Certificate
+      </button>
+    </div>
+  </div>
+
+  <!-- 16 -->
+  <div class="cert-card" onclick="openLight('assets/Certificates/web development diploma.png','Web Development Diploma — STP Computer • 2025')">
+    <div class="cert-img-wrap">
+      <img src="assets/Certificates/web development diploma.png" alt="Web Development Diploma">
+      <span class="cert-issuer">STP</span>
+      <div class="zoom-overlay"><i class="fas fa-search-plus"></i></div>
+    </div>
+    <div class="card-body">
+      <h3>Web Development Diploma</h3>
+      <p class="year">STP Computer • 2025</p>
+      <button class="btn-view" onclick="event.stopPropagation(); openLight('assets/Certificates/web development diploma.png','Web Development Diploma — STP Computer • 2025')">
+        <i class="fas fa-eye"></i> View Certificate
+      </button>
+    </div>
+  </div>
+
+  <!-- 17 -->
+  <div class="cert-card" onclick="openLight('assets/Certificates/Web Deblopment Marksheet.png','Web Development Marksheet — STP Computer • 2025')">
+    <div class="cert-img-wrap">
+      <img src="assets/Certificates/Web Deblopment Marksheet.png" alt="Web Development Marksheet">
+      <span class="cert-issuer">STP</span>
+      <div class="zoom-overlay"><i class="fas fa-search-plus"></i></div>
+    </div>
+    <div class="card-body">
+      <h3>Web Development Marksheet</h3>
+      <p class="year">STP Computer • 2025</p>
+      <button class="btn-view" onclick="event.stopPropagation(); openLight('assets/Certificates/Web Deblopment Marksheet.png','Web Development Marksheet — STP Computer • 2025')">
+        <i class="fas fa-eye"></i> View Certificate
+      </button>
+    </div>
+  </div>
+
+  <!-- 18 -->
+  <div class="cert-card" onclick="openLight('assets/Certificates/C Programming Language.png','C Programming Language Diploma — Jupiter Pathshala • 2024')">
+    <div class="cert-img-wrap">
+      <img src="assets/Certificates/C Programming Language.png" alt="C Programming">
+      <span class="cert-issuer">Jupiter</span>
+      <div class="zoom-overlay"><i class="fas fa-search-plus"></i></div>
+    </div>
+    <div class="card-body">
+      <h3>C Programming Language Diploma</h3>
+      <p class="year">Jupiter Pathshala • 2024</p>
+      <button class="btn-view" onclick="event.stopPropagation(); openLight('assets/Certificates/C Programming Language.png','C Programming Language Diploma — Jupiter Pathshala • 2024')">
+        <i class="fas fa-eye"></i> View Certificate
+      </button>
+    </div>
+  </div>
+
+  <!-- 19 -->
+  <div class="cert-card" onclick="openLight('assets/Certificates/C Programming Language Marksheet.png','C Programming Marksheet — Jupiter Pathshala • 2024')">
+    <div class="cert-img-wrap">
+      <img src="assets/Certificates/C Programming Language Marksheet.png" alt="C Programming Marksheet">
+      <span class="cert-issuer">Jupiter</span>
+      <div class="zoom-overlay"><i class="fas fa-search-plus"></i></div>
+    </div>
+    <div class="card-body">
+      <h3>C Programming Language Marksheet</h3>
+      <p class="year">Jupiter Pathshala • 2024</p>
+      <button class="btn-view" onclick="event.stopPropagation(); openLight('assets/Certificates/C Programming Language Marksheet.png','C Programming Marksheet — Jupiter Pathshala • 2024')">
+        <i class="fas fa-eye"></i> View Certificate
+      </button>
+    </div>
+  </div>
+
+  <!-- 20 -->
+  <div class="cert-card" onclick="openLight('assets/Certificates/Hacker rank.png','Python (Basic) — HackerRank • 2026')">
+    <div class="cert-img-wrap">
+      <img src="assets/Certificates/Hacker rank.png" alt="HackerRank Python">
+      <span class="cert-issuer">HackerRank</span>
+      <div class="zoom-overlay"><i class="fas fa-search-plus"></i></div>
+    </div>
+    <div class="card-body">
+      <h3>Python (Basic)</h3>
+      <p class="year">HackerRank • 2026</p>
+      <button class="btn-view" onclick="event.stopPropagation(); openLight('assets/Certificates/Hacker rank.png','Python (Basic) — HackerRank • 2026')">
+        <i class="fas fa-eye"></i> View Certificate
+      </button>
+    </div>
+  </div>
+
+  <!-- 21 -->
+  <div class="cert-card" onclick="openLight('assets/Certificates/Excel to Power BI.png','Excel to Power BI — Knowledge Accelerators • 2026')">
+    <div class="cert-img-wrap">
+      <img src="assets/Certificates/Excel to Power BI.png" alt="Excel to Power BI">
+      <span class="cert-issuer">Knowledge</span>
+      <div class="zoom-overlay"><i class="fas fa-search-plus"></i></div>
+    </div>
+    <div class="card-body">
+      <h3>Excel to Power BI</h3>
+      <p class="year">Knowledge Accelerators • 2026</p>
+      <button class="btn-view" onclick="event.stopPropagation(); openLight('assets/Certificates/Excel to Power BI.png','Excel to Power BI — Knowledge Accelerators • 2026')">
+        <i class="fas fa-eye"></i> View Certificate
+      </button>
+    </div>
+  </div>
+
+  <!-- 22 -->
+  <div class="cert-card" onclick="openLight('assets/Certificates/Data, Data EveryWhere.png','Data, Data, Everywhere — Google • 2026')">
+    <div class="cert-img-wrap">
+      <img src="assets/Certificates/Data, Data EveryWhere.png" alt="Data Data Everywhere">
+      <span class="cert-issuer">Google</span>
+      <div class="zoom-overlay"><i class="fas fa-search-plus"></i></div>
+    </div>
+    <div class="card-body">
+      <h3>Data, Data, Everywhere</h3>
+      <p class="year">Google • 2026</p>
+      <button class="btn-view" onclick="event.stopPropagation(); openLight('assets/Certificates/Data, Data EveryWhere.png','Data, Data, Everywhere — Google • 2026')">
+        <i class="fas fa-eye"></i> View Certificate
+      </button>
+    </div>
+  </div>
+
+</div>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" onclick="closeLight(event)">
+  <div class="lightbox-inner">
+    <button class="lightbox-close" onclick="closeLightDirect()"><i class="fas fa-times"></i></button>
+    <img id="lightboxImg" src="" alt="">
+    <p class="lightbox-caption" id="lightboxCaption"></p>
+  </div>
+</div>
+
+<footer class="page-footer">
+  © 2026 Raghav Agrawal | All Rights Reserved
+</footer>
+
+<script>
+  function openLight(src, caption) {
+    document.getElementById('lightboxImg').src = src;
+    document.getElementById('lightboxCaption').textContent = caption;
+    document.getElementById('lightbox').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLight(e) {
+    if (e.target === document.getElementById('lightbox')) {
+      closeLightDirect();
+    }
+  }
+  function closeLightDirect() {
+    document.getElementById('lightbox').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeLightDirect();
+  });
+</script>
+
+</body>
+</html>
