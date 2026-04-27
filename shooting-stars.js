@@ -130,33 +130,33 @@
 // ===================================================
 // TIME-BASED GREETING — VOICE ONLY (Speech Synthesis)
 // ===================================================
-(function() {
-  function speakGreeting() {
-    if (!window.speechSynthesis) return;
-    const h = new Date().getHours();
-    let greeting;
-    if (h >= 5 && h < 12) {
-      greeting = "Good Morning! Welcome to Raghav Agrawal's portfolio. Have a wonderful day!";
-    } else if (h >= 12 && h < 17) {
-      greeting = "Good Afternoon! Welcome to Raghav Agrawal's portfolio. Hope you are having a great day!";
-    } else if (h >= 17 && h < 21) {
-      greeting = "Good Evening! Welcome to Raghav Agrawal's portfolio. Enjoy exploring his work!";
-    } else {
-      greeting = "Good Night! Welcome to Raghav Agrawal's portfolio. Still working late? So does Raghav!";
-    }
-    const utter = new SpeechSynthesisUtterance(greeting);
-    utter.lang   = 'en-IN';
-    utter.rate   = 0.92;
-    utter.pitch  = 1.05;
-    utter.volume = 1;
-    // Pick a pleasant voice if available
-    const voices = window.speechSynthesis.getVoices();
-    const preferred = voices.find(v => v.lang.startsWith('en') && v.name.toLowerCase().includes('female'))
-                   || voices.find(v => v.lang.startsWith('en'))
-                   || voices[0];
-    if (preferred) utter.voice = preferred;
-    window.speechSynthesis.speak(utter);
-  }
+// (function() {
+//   function speakGreeting() {
+//     if (!window.speechSynthesis) return;
+//     const h = new Date().getHours();
+//     let greeting;
+//     if (h >= 5 && h < 12) {
+//       greeting = "Good Morning! Welcome to Raghav Agrawal's portfolio. Have a wonderful day!";
+//     } else if (h >= 12 && h < 17) {
+//       greeting = "Good Afternoon! Welcome to Raghav Agrawal's portfolio. Hope you are having a great day!";
+//     } else if (h >= 17 && h < 21) {
+//       greeting = "Good Evening! Welcome to Raghav Agrawal's portfolio. Enjoy exploring his work!";
+//     } else {
+//       greeting = "Good Night! Welcome to Raghav Agrawal's portfolio. Still working late? So does Raghav!";
+//     }
+//     const utter = new SpeechSynthesisUtterance(greeting);
+//     utter.lang   = 'en-IN';
+//     utter.rate   = 0.92;
+//     utter.pitch  = 1.05;
+//     utter.volume = 1;
+//     // Pick a pleasant voice if available
+//     const voices = window.speechSynthesis.getVoices();
+//     const preferred = voices.find(v => v.lang.startsWith('en') && v.name.toLowerCase().includes('female'))
+//                    || voices.find(v => v.lang.startsWith('en'))
+//                    || voices[0];
+//     if (preferred) utter.voice = preferred;
+//     window.speechSynthesis.speak(utter);
+//   }
 
   // Voices may not load instantly — wait for them
   if (window.speechSynthesis.getVoices().length > 0) {
@@ -169,24 +169,25 @@
 // ===================================================
 // BACKGROUND AMBIENT MUSIC
 // ===================================================
-(function() {
-  const btn   = document.getElementById('music-toggle');
-  const audio = document.getElementById('bg-music');
-  if (!btn || !audio) return;
-  let playing = false;
-  audio.volume = 0.18;
-  btn.addEventListener('click', () => {
-    if (!playing) {
-      audio.play().then(() => {
-        btn.textContent = '\uD83D\uDD07';
-        btn.title = 'Pause Music';
-        playing = true;
-      }).catch(() => {});
-    } else {
-      audio.pause();
-      btn.textContent = '\uD83C\uDFB5';
-      btn.title = 'Play Music';
-      playing = false;
-    }
-  });
-})();
+
+// (function() {
+//   const btn   = document.getElementById('music-toggle');
+//   const audio = document.getElementById('bg-music');
+//   if (!btn || !audio) return;
+//   let playing = false;
+//   audio.volume = 0.18;
+//   btn.addEventListener('click', () => {
+//     if (!playing) {
+//       audio.play().then(() => {
+//         btn.textContent = '\uD83D\uDD07';
+//         btn.title = 'Pause Music';
+//         playing = true;
+//       }).catch(() => {});
+//     } else {
+//       audio.pause();
+//       btn.textContent = '\uD83C\uDFB5';
+//       btn.title = 'Play Music';
+//       playing = false;
+//     }
+//   });
+// })();
