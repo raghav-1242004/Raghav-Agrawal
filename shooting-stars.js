@@ -159,12 +159,12 @@
 //   }
 
   // Voices may not load instantly — wait for them
-  if (window.speechSynthesis.getVoices().length > 0) {
-    speakGreeting();
-  } else {
-    window.speechSynthesis.addEventListener('voiceschanged', speakGreeting, { once: true });
-  }
-})();
+//   if (window.speechSynthesis.getVoices().length > 0) {
+//     speakGreeting();
+//   } else {
+//     window.speechSynthesis.addEventListener('voiceschanged', speakGreeting, { once: true });
+//   }
+// })();
 
 // ===================================================
 // BACKGROUND AMBIENT MUSIC
