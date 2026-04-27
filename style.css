@@ -1839,3 +1839,16 @@ footer {
   pointer-events: none;
   z-index: 0;
 }
+
+/* ===================================================
+   HERO IMAGE — FLOATING ANIMATION
+   =================================================== */
+.image-frame {
+  animation: floatImage 4s ease-in-out infinite;
+}
+
+@keyframes floatImage {
+  0%,100% { transform: translateY(0px) rotate(0deg); }
+  25%      { transform: translateY(-12px) rotate(1deg); }
+  75%      { transform: translateY(6px)  rotate(-1deg); }
+}
