@@ -1887,7 +1887,7 @@ footer {
    HERO IMAGE — FLOATING ANIMATION
    =================================================== */
 .image-frame {
-  animation: floatImage 4s ease-in-out infinite;
+   animation: none;;
 }
 @keyframes floatImage {
   0%,100% { transform: translateY(0px) rotate(0deg); }
