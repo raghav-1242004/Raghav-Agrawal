@@ -1896,10 +1896,10 @@ footer {
   75%      { transform: translateY(6px)  rotate(-1deg); }
 }
 
-/* ===================================================
+/* /* ===================================================
    MUSIC TOGGLE BUTTON
    =================================================== */
-#music-toggle {
+/* #music-toggle {
   position: fixed;
   bottom: 28px;
   right: 28px;
@@ -1925,4 +1925,4 @@ footer {
 @keyframes musicPulse {
   0%,100% { box-shadow: 0 0 24px rgba(0,238,255,0.5); }
   50%      { box-shadow: 0 0 44px rgba(168,85,247,0.8); }
-}
+} */ */
