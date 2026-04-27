@@ -1840,6 +1840,49 @@ footer {
   z-index: 0;
 }
 
+
+/* .greeting-popup {
+  background: linear-gradient(135deg, rgba(0,238,255,0.12), rgba(168,85,247,0.12));
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(0,238,255,0.35);
+  border-radius: 60px;
+  padding: 14px 36px;
+  margin-top: 80px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #fff;
+  box-shadow: 0 0 40px rgba(0,238,255,0.2), 0 8px 32px rgba(0,0,0,0.4);
+  animation: greetSlideDown 0.7s cubic-bezier(.34,1.56,.64,1) forwards,
+             greetFadeOut 0.6s ease 4.5s forwards;
+  white-space: nowrap;
+}
+
+.greeting-popup .greet-emoji {
+  font-size: 1.6rem;
+  animation: waveStar 1.5s ease-in-out infinite;
+}
+
+.greeting-popup .greet-text span {
+  color: #0ef;
+}
+
+@keyframes greetSlideDown {
+  from { opacity: 0; transform: translateY(-40px) scale(0.9); }
+  to   { opacity: 1; transform: translateY(0)    scale(1);   }
+}
+@keyframes greetFadeOut {
+  from { opacity: 1; transform: translateY(0); }
+  to   { opacity: 0; transform: translateY(-20px); pointer-events: none; }
+}
+@keyframes waveStar {
+  0%, 100% { transform: rotate(-15deg) scale(1); }
+  50%       { transform: rotate(15deg)  scale(1.2); }
+} */
+
 /* ===================================================
    HERO IMAGE — FLOATING ANIMATION
    =================================================== */
@@ -1848,13 +1891,38 @@ footer {
 }
 
 @keyframes floatImage {
-  0% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-15px);
-  }
-  100% {
-    transform: translateY(0px);
-  }
+  0%,100% { transform: translateY(0px) rotate(0deg); }
+  25%      { transform: translateY(-12px) rotate(1deg); }
+  75%      { transform: translateY(6px)  rotate(-1deg); }
+}
+
+/* ===================================================
+   MUSIC TOGGLE BUTTON
+   =================================================== */
+#music-toggle {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 9999;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #0ef, #a855f7);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  box-shadow: 0 0 24px rgba(0,238,255,0.5);
+  transition: transform 0.3s, box-shadow 0.3s;
+  animation: musicPulse 2s ease-in-out infinite;
+}
+#music-toggle:hover {
+  transform: scale(1.15);
+  box-shadow: 0 0 40px rgba(0,238,255,0.8);
+}
+@keyframes musicPulse {
+  0%,100% { box-shadow: 0 0 24px rgba(0,238,255,0.5); }
+  50%      { box-shadow: 0 0 44px rgba(168,85,247,0.8); }
 }
